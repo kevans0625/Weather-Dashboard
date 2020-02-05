@@ -1,0 +1,19 @@
+.jumbotron {
+    background: rgba(11, 11, 38, 0.762)!important;
+    color: white;
+
+}
+
+.btn-dark {
+    background: #e83f02d0;
+    width: 100%;
+    margin: 1px;
+    border: none;
+}
+.citydisplay {
+    margin-bottom: 20px!important;
+}
+.bg-primary {
+    background: rgb(20, 131, 131)!important;
+    justify-content: center;
+}
