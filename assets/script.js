@@ -55,7 +55,7 @@ $(document).ready(function () {
                     $(".windspeed").text("Wind Speed: " + windSpeed + " mph");
 
                     //5 day forecast 
-                    function day1() {
+                    function forecast(i) {
                         console.log(response.list[5]);
                         console.log(response.list[10]);
                         console.log(response.list[20]);
@@ -63,169 +63,50 @@ $(document).ready(function () {
                         console.log(response.list[35]);
 
                         // create a div with the class of col-sm-3
-
-                     
+                        var col = $("<div>").addClass("col-sm-2 card text-white bg-primary")
+                        var card = $("<div>").addClass("card-body")
+                        col.append(card)
+                        $(".forecast").append(col)
                         //text 
-                        var date = response.list[5].dt_txt;
+                        var date = response.list[i].dt_txt;
                         const dateString = moment(date).format("MM/DD/YYYY");
                         //append 
-                        $(".Day1").text(dateString)
+                        var dateEl = $("<p>").text(dateString)
+                        card.append(dateEl)
+
                         //icon 
-                        var iconcode = response.list[5].weather[0].icon;
+                        var iconcode = response.list[i].weather[0].icon;
                         var getIcon = "http://openweathermap.org/img/w/" + iconcode + ".png";
-                        var icon = $("<img>").attr("src", getIcon);
+                        var iconEl = $("<img>").attr("src", getIcon);
                     
-                        $(".icon1").html(icon)
+                        card.append(iconEl)
 
-                        //temperature 
-                        //text 
-                        var temperature = Math.floor(response.list[5].main.temp);
-                        //append this to the html 
-                        $(".temp1").text("Temperature:  " + temperature + "° F");
-                        console.log(temperature)
-                        //append 
-                        //humidity 
-                        var humidity = response.list[5].main.humidity;
-                        //append this to the html 
-                        $(".hum1").text("Humidity: " + humidity + "%");
-                       
-                    } day1()
-
-                    function day2() {
-                     
-                        console.log(response.list[10]);
-                        console.log(response.list[20]);
-                        console.log(response.list[25]);
-                        console.log(response.list[35]);
-
-                        // create a div with the class of col-sm-3
-
-                     
-                        //text 
-                        var date = response.list[10].dt_txt;
-                        const dateString = moment(date).format("MM/DD/YYYY");
-                        //append 
-                        $(".Day2").text(dateString)
-                        //icon 
-                        var iconcode = response.list[10].weather[0].icon;
-                        var getIcon = "http://openweathermap.org/img/w/" + iconcode + ".png";
-                        var icon = $("<img>").attr("src", getIcon);
-                    
-                        $(".icon2").html(icon)
-
-                        //temperature 
-                        //text 
-                        var temperature = Math.floor(response.list[10].main.temp);
-                        //append this to the html 
-                        $(".temp2").text("Temperature:  " + temperature + "° F");
-                        console.log(temperature)
-                        //append 
-                        //humidity 
-                        var humidity = response.list[10].main.humidity;
-                        //append this to the html 
-                        $(".hum2").text("Humidity: " + humidity + "%");
-                       
-                    } day2()
-                    function day3() {
-                     
                         
-                        console.log(response.list[20]);
-                        console.log(response.list[25]);
-                        console.log(response.list[35]);
-
-                        // create a div with the class of col-sm-3
-
-                     
-                        //text 
-                        var date = response.list[20].dt_txt;
-                        const dateString = moment(date).format("MM/DD/YYYY");
-                        //append 
-                        $(".Day3").text(dateString)
-                        //icon 
-                        var iconcode = response.list[20].weather[0].icon;
-                        var getIcon = "http://openweathermap.org/img/w/" + iconcode + ".png";
-                        var icon = $("<img>").attr("src", getIcon);
-                    
-                        $(".icon3").html(icon)
-
                         //temperature 
                         //text 
-                        var temperature = Math.floor(response.list[20].main.temp);
+                        var temperature = Math.floor(response.list[i].main.temp);
                         //append this to the html 
-                        $(".temp3").text("Temperature:  " + temperature + "° F");
+                        
                         console.log(temperature)
                         //append 
+                        var tempEl = $("<p>").addClass("card-text")
+                        tempEl.text(temperature + "° F");
+                        card.append(tempEl)
                         //humidity 
-                        var humidity = response.list[20].main.humidity;
+                        var humidity = response.list[i].main.humidity;
                         //append this to the html 
-                        $(".hum3").text("Humidity: " + humidity + "%");
                        
-                    } day3()
-                    function day4() {
-                     
-                        console.log(response.list[25]);
-                        console.log(response.list[35]);
-
-                        // create a div with the class of col-sm-3
-
-                     
-                        //text 
-                        var date = response.list[25].dt_txt;
-                        const dateString = moment(date).format("MM/DD/YYYY");
-                        //append 
-                        $(".Day4").text(dateString)
-                        //icon 
-                        var iconcode = response.list[25].weather[0].icon;
-                        var getIcon = "http://openweathermap.org/img/w/" + iconcode + ".png";
-                        var icon = $("<img>").attr("src", getIcon);
-                    
-                        $(".icon4").html(icon)
-
-                        //temperature 
-                        //text 
-                        var temperature = Math.floor(response.list[25].main.temp);
-                        //append this to the html 
-                        $(".temp4").text("Temperature:  " + temperature + "° F");
-                        console.log(temperature)
-                        //append 
-                        //humidity 
-                        var humidity = response.list[25].main.humidity;
-                        //append this to the html 
-                        $(".hum4").text("Humidity: " + humidity + "%");
+                        var humEl = $("<p>").addClass("card-text")
+                        humEl.text("Humidity: " + humidity + "%");
+                        card.append(humEl)
                        
-                    } day4()
-                    function day5() {
-                    
-                        console.log(response.list[35]);
+                    } forecast(5)
+                    forecast(15)
+                    forecast(25)
+                    forecast(30)
+                    forecast(35)
+                  
 
-                        // create a div with the class of col-sm-3
-
-                     
-                        //text 
-                        var date = response.list[35].dt_txt;
-                        const dateString = moment(date).format("MM/DD/YYYY");
-                        //append 
-                        $(".Day5").text(dateString)
-                        //icon 
-                        var iconcode = response.list[35].weather[0].icon;
-                        var getIcon = "http://openweathermap.org/img/w/" + iconcode + ".png";
-                        var icon = $("<img>").attr("src", getIcon);
-                    
-                        $(".icon5").html(icon)
-
-                        //temperature 
-                        //text 
-                        var temperature = Math.floor(response.list[35].main.temp);
-                        //append this to the html 
-                        $(".temp5").text("Temperature:  " + temperature + "° F");
-                        console.log(temperature)
-                        //append 
-                        //humidity 
-                        var humidity = response.list[35].main.humidity;
-                        //append this to the html 
-                        $(".hum5").text("Humidity: " + humidity + "%");
-                       
-                    } day5()
                 };
                 displaymain()
                 
@@ -262,7 +143,6 @@ $(document).ready(function () {
 
 // create a function to run display search cities 
 function rendercities() {
-
     $(".city-view").empty();
     for (var i = 0; i < cities.length; i++) {
         //create element
@@ -276,6 +156,7 @@ function rendercities() {
         $(".city-view").prepend(cityEL);
 
     }
+   
 }
 
 // create a for loop to run the through the array of cities whehn the city button is clicked
@@ -293,7 +174,7 @@ $("#add-city").on("click", function (event) {
     rendercities()
 });
 
-// Adding a click event listener to all elements with a class of "movie-btn"
+// Adding a click event listener to all elements with a class of "city-btn"
 $(document).on("click", ".city-btn", displayit);
 
 rendercities()
