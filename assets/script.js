@@ -290,7 +290,7 @@ $("#add-city").on("click", function (event) {
     var city = $("#city-input").val().trim();
     cities.push(city);
     console.log(city);
-    
+    rendercities()
 });
 
 // Adding a click event listener to all elements with a class of "movie-btn"
