@@ -173,9 +173,16 @@ $("#add-city").on("click", function (event) {
     console.log(city);
     rendercities()
 });
+function greeting (){
+    $(".greeting").empty()
+} 
 
+function emptyForecast (){
+    $(".forecast").empty()
+} 
 // Adding a click event listener to all elements with a class of "city-btn"
 $(document).on("click", ".city-btn", displayit);
-
+$(document).on("click", ".city-btn", greeting);
+$(document).on("click", ".city-btn", emptyForecast);
 rendercities()
 });
