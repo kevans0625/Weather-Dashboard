@@ -1,10 +1,12 @@
 # Weather-Dashboard
 
-# 06 Server-Side APIs: Weather Dashboard
+This app uses a server-side API [OpenWeather API](https://openweathermap.org/api) to retrieve weather data for cities.
 
-Developers are often tasked with retrieving data from another application's API and using it in the context of their own. Third-party APIs allow developers to access their data and functionality by making requests with specific parameters to a URL. Your challenge is to build a weather dashboard that will run in the browser and feature dynamically updated HTML and CSS.
+### Server-Side APIs: Weather Dashboard
 
-Use the [OpenWeather API](https://openweathermap.org/api) to retrieve weather data for cities. The documentation includes a section called "How to start" that will provide basic setup and usage instructions. Use `localStorage` to store any persistent data.
+I was challenged to build a weather dashboard that will run in the browser and feature dynamically updated HTML and CSS.
+
+This was an education exercise to enhance my skills in retrieving data from another application's API and using it in the context of my own. From this project I have learned to access Third-party APIs  and functionality by making requests with specific parameters to a URL. 
 
 ## User Story
 
@@ -14,7 +16,7 @@ I WANT to see the weather outlook for multiple cities
 SO THAT I can plan a trip accordingly
 ```
 
-## Acceptance Criteria
+## Criteria
 
 ```
 GIVEN a weather dashboard with form inputs
@@ -29,17 +31,3 @@ THEN I am presented with a 5-day forecast that displays the date, an icon repres
 WHEN I click on a city in the search history
 THEN I am again presented with current and future conditions for that city
 ```
-
-The following image demonstrates the application functionality:
-
-![weather dashboard demo](./Assets/06-server-side-apis-homework-demo.png)
-
-## Review
-
-You are required to submit the following for review:
-
-* The URL of the deployed application.
-
-* The URL of the GitHub repository. Give the repository a unique name and include a README describing the project.
-
-- - -
