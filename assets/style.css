@@ -16,4 +16,9 @@
 .bg-primary {
     background: rgb(20, 131, 131)!important;
     justify-content: center;
+   
+}
+
+.col-sm-2{
+    margin: 3px;
 }
