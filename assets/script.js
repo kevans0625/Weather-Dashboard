@@ -16,6 +16,8 @@ $(document).ready(function () {
             .then(function (response) {
                 console.log(queryURL);
                 console.log(response);
+                const lat = response.city.coord.lat;
+                const lon = response.city.coord.lon;
 
                 function displaymain() {
                     $(".city").empty()
@@ -78,15 +80,15 @@ $(document).ready(function () {
                         var iconcode = response.list[i].weather[0].icon;
                         var getIcon = "http://openweathermap.org/img/w/" + iconcode + ".png";
                         var iconEl = $("<img>").attr("src", getIcon);
-                    
+
                         card.append(iconEl)
 
-                        
+
                         //temperature 
                         //text 
                         var temperature = Math.floor(response.list[i].main.temp);
                         //append this to the html 
-                        
+
                         console.log(temperature)
                         //append 
                         var tempEl = $("<p>").addClass("card-text")
@@ -95,51 +97,69 @@ $(document).ready(function () {
                         //humidity 
                         var humidity = response.list[i].main.humidity;
                         //append this to the html 
-                       
+
                         var humEl = $("<p>").addClass("card-text")
                         humEl.text("Humidity: " + humidity + "%");
                         card.append(humEl)
-                       
-                    } forecast(5)
+
+                    } 
+                    forecast(5)
                     forecast(15)
                     forecast(25)
                     forecast(30)
                     forecast(35)
-                  
 
+                    uv(lat,lon);
                 };
+
                 displaymain()
                 
+
+
+            })
+
+    }
+
+
+    //to get uv pull lat and lon 
+    
+    
+    function uv(lat,lon) {
+       
+        let APIkey = "679028e3f0c8fba1d84518258a6a9385&APPID=679028e3f0c8fba1d84518258a6a9385";
+        let queryURL = `https://api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${lon}&appid=${APIkey}`
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        })
+            .then(function (uvresponse) {
+               // console.log(queryURL);
+                console.log(uvresponse);
+
+                var uvIndex = parseInt(uvresponse.value);
+                console.log(uvIndex)
                 
-    })
 
-}
-                    //     //     var date = response.list[0].dt_txt; 
-                    //     //     const timeString = moment(date).format("YYYY-DD-MM");
-                    //     //     console.log(timeString)
-                    //     //     //to get uv pull lat and lon 
-                    //     //    const lat = response.city.coord.lat;
-                    //     //     const lon = response.city.coord.lon;
-                    //     //     console.log(lat)
-                    //     //     function uv(){
-                        //     //         let APIkey = "679028e3f0c8fba1d84518258a6a9385&APPID=679028e3f0c8fba1d84518258a6a9385";
-                        //     //         let queryURL = "https://crossorigin.me/https://api.openweathermap.org/v3/uvi/" + lat + "," + lon + "/" + timeString + "T12:00:00Z.json?appid=" + APIkey;
-                        //     //         $.ajax({
-                            //     //             url: queryURL,
-                            //     //             method: "GET"
-                            //     //         })
-                            //     //         .then(function(uvresponse) {
-                                //     //             console.log(queryURL);
-                                //     //             console.log(uvresponse);
-                                //     //                 //uv index
-                                //     //                 // var uvIndex = uvresponse.value;
-                                //     //                 // console.log(uvIndex)
-                                //     //                 // //append this to the html 
-                                //     //                 // $(".uv-index").text("UV Index: " + uvIndex);
-                                //     //             })
-                                //     //         } uv()
+                //append this to the html 
+                $(".uv-index").text("UV Index: " + uvIndex);
+                
+                if (uvIndex < 2){
+                    $(".uv-index").addClass("favorable") 
 
-                                        // })
+                } else if (uvIndex => 2 && uvIndex < 6){
+                    $(".uv-index").removeClass("favorable") 
+                    $(".uv-index").removeClass("severe") 
+                    $(".uv-index").addClass("moderate") 
+                } else (uvIndex > 6) 
+                    $(".uv-index").removeClass("favorable") 
+                    $(".uv-index").addClass("severe") 
+                    $(".uv-index").removeClass("moderate") 
+                
+            })
+    } 
+    
+
+
 
 // create a function to run display search cities 
 function rendercities() {
@@ -156,7 +176,7 @@ function rendercities() {
         $(".city-view").prepend(cityEL);
 
     }
-   
+
 }
 
 // create a for loop to run the through the array of cities whehn the city button is clicked
@@ -173,16 +193,19 @@ $("#add-city").on("click", function (event) {
     console.log(city);
     rendercities()
 });
-function greeting (){
+function greeting() {
     $(".greeting").empty()
-} 
+}
 
-function emptyForecast (){
+function emptyForecast() {
     $(".forecast").empty()
-} 
+}
 // Adding a click event listener to all elements with a class of "city-btn"
 $(document).on("click", ".city-btn", displayit);
 $(document).on("click", ".city-btn", greeting);
 $(document).on("click", ".city-btn", emptyForecast);
 rendercities()
-});
+
+
+
+})

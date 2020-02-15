@@ -19,6 +19,24 @@
    
 }
 
+.favorable {
+
+    background: green;
+color: white;
+}
+
+.moderate {
+    background: yellow;
+    color: white;
+}
+
+.severe{
+    background: red;
+    color: white;
+}
+
+
 .col-sm-2{
     margin: 3px;
+    color: white;
 }
